@@ -33,12 +33,12 @@ require("TeachingDemos")
 
 
 ## Resumo
-Este documento apresenta uma análise sobre a comparação de duas versões de software
+Uso da inferência estatística para avaliar se houve ganho de desempenho da nova versão de um _software_ em relação a versão atual.
 
 ### Descrição do problema
-O problema apresentado neste estudo de caso apresenta uma compararação de desempenho entre dois softwares usados para a simulação de características eletromagnéticas de antenas _patch_. A métrica utilizada para avaliar a nova versão de software é o tempo médio de execução. É disponibilizada uma amostra de tamanho 14, com os valores do tempo de execução da nova versão do software. Sabe-se que o tempo médio de simulação e a variância da versão antiga do software são respectivamente $\mu = 55s$ e $\sigma^2 = 100s^2$. 
+O problema apresentado neste estudo de caso apresenta uma compararação de desempenho entre dois _softwares_ usados para a simulação de características eletromagnéticas de antenas _patch_. A métrica utilizada para avaliar a nova versão de _software_ é o tempo médio de execução. Foi disponibilizada uma amostra de tamanho 14, com os valores do tempo de execução da nova versão do _software_. Sabe-se que o tempo médio de simulação e a variância da versão antiga do _software_ são respectivamente $\mu = 55s$ e $\sigma^2 = 100s^2$. 
 
-Dessa forma, pretende-se investigar se houve melhoria na nova versão do software com relação à metrica de desempenho do tempo de execução, dados os valores de média e variância citados. Assume-se que o nível de significância para a média foi de $0,01$. Já para a variância, ficou definido como $0,05$.
+Dessa forma, pretende-se investigar se houve melhoria na nova versão do _software_ com relação à metrica de desempenho do tempo de execução, dados os valores de média e variância citados. Assume-se que o nível de significância para a média foi de $0,01$ e para a variância foi de $0,05$.
 
 
 ##  Análise com relação à média
