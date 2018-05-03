@@ -44,7 +44,7 @@ Dessa forma, pretende-se investigar se houve melhoria na nova versão do softwar
 ##  Análise com relação à média
 ### Planejamento Experimental
 
-A definição da hipótese nula foi baseada na presunção de ausência de efeitos em relação à implementação do novo software, ou seja, não houve melhoria no desempenho, tendo como métrica o tempo de execução. Já na hipótese alternativa, espera-se que o tempo médio de execução seja menor quando comparado à versão anterior do software.
+A definição da hipótese nula foi baseada na presunção de ausência de efeitos em relação à implementação do novo _software_, ou seja, não houve melhoria no desempenho, tendo como métrica o tempo de execução. Já na hipótese alternativa, espera-se que o tempo médio de execução seja menor quando comparado à versão anterior do software.
 $$\begin{cases} H_0: \mu >= 55&\\H_1: \mu<55\end{cases}$$
 
 ### Análise de dados exploratória
@@ -61,18 +61,18 @@ De acordo com @Campelo2015-01, uma das formas de estimar a magnitude do menor ef
 $$d = \frac{(\overline{x} - \mu)}{s}$$ 
 onde $\overline{x}$ é a média amostral, $\mu$ a média populacional e $s$ o desvio padrão amostral.
 
-Segundo @ellis2010essential, é de fundamental importância a avaliação do tamanho de efeito, uma vez que a inferência estatítica, como a análise do teste $t$ e o $p_{valor}$, não avaliam o efeito prático dos resultados observados. Nesse contexto, @Campelo2015-01 ressalta ainda a necessidade de um conhecimento sólido da área em que se realiza os experimentos como premissa básica para uma análise adequada dos resultados.
+Segundo @ellis2010essential, é de fundamental importância a avaliação do tamanho de efeito, uma vez que a inferência estatística, como a análise do teste $t$ e o $p_{valor}$, não avaliam o efeito prático dos resultados observados. Nesse contexto, @Campelo2015-01 ressalta ainda a necessidade de um conhecimento sólido da área em que se realiza os experimentos como premissa básica para uma análise adequada dos resultados.
 
-Como interpretação do valor de **d**, optou-se por utilizar os valores de referência mostrados em [coloca ref: Cohen 1988, bib1, bibi2, bib3] onde são considerados:
+Como interpretação do valor de **d**, optou-se por utilizar os valores de referência mostrados em \cite{Cohen1988} \cite{CONBOY2003} \cite{ESPIRITO_SANTO2015} \cite{LOUREIRO2011} onde são considerados:
 
 * Pequeno efeito de relevância prática: 0,20 $<=$ d $<=$ 0,50
 * Médio efeito de relevância prática: 0,50 $<=$ d $<=$ 0,80
 * Grande efeito de relevância prática: 0,80 $<=$ d 
 
-segundo [Cohen, bib4], quando o investigador não tem outra base para definir o valor da potência, usa-se o valor 0.80, ou sega, $\beta=0.20$
+segundo \cite{Cohen1998}, quando o investigador não tem outra base para definir o valor da potência, usa-se o valor 0.80, ou seja, $\beta=0.20$
 
 ### Análise Estatística
-Inicialmente utilizou-se o teste estatístico para a média. Como a variância é desconhecida e têm-se um tamanho amostral [pequeno](http://www.statisticshowto.com/probability-and-statistics/hypothesis-testing/t-score-vs-z-score/), foi utilizado o teste **t**.
+Inicialmente utilizou-se o teste estatístico para a média. Como a variância é desconhecida e têm-se um tamanho amostral pequeno, foi utilizado o teste **t** \cite{Stephanie2018}.
 
 
 ```{r}
@@ -85,14 +85,14 @@ print(t)
 
 O intervalo de confiança é: $-\infty$ a `r t$conf.int[2]`.
 
-Para a realização do teste de potência, foi definido que uma variação de 5 segundos em relação à média do tempo de execução do software seria relevante, uma vez que o valor de delta quantifica a incerteza pelo intervalo de confiança.
+Para a realização do teste de potência, foi definido que uma variação de 5 segundos em relação à média do tempo de execução do _software_ seria relevante, uma vez que o valor de delta quantifica a incerteza pelo intervalo de confiança.
 
 ```{r}
 power <- power.t.test(n = length(data$run.time), delta = 5, sd = sd(data$run.time),
                       sig.level = 0.01, 
                       type = "one.sample", alternative = "one.sided")
 ```
-Uma vez que o poder do teste é menor que o limiar definido de 80% [linkar definição, citar slides], foi realizado novamente o teste para definir o menor tamanho amostral para um poder de teste de 80%.
+Uma vez que o poder do teste é menor que o limiar definido de 80% \cite{Campelo2015-01}, foi realizado novamente o teste para definir o menor tamanho amostral para um poder de teste de 80%.
 
 ```{r}
 power.t.test(power = 0.80, delta = 5, sd = sd(data$run.time), sig.level = 0.01, 
@@ -113,9 +113,8 @@ Com relação ao tamanho amostral, verificou-se que para alcançar um poder de t
 ### Planejamento Experimental
 No caso da variância, definiu-se a hipótese nula como sendo maior ou igual a 100. Já a hipótese alternativa como menor que 100, como segue:
 $$\begin{cases} H_0: \mu >= 100&\\H_1: \mu<100\end{cases}$$
+
 ## Análise Estatística
-
-
 Foi realizado o teste **sigma** para variância de uma amostra, também disponível no pacote _TeachingDemos_.
 ```{r}
 sig <- sigma.test(data$run.time, sigma = 10, alternative = c("less"), 
@@ -128,7 +127,7 @@ O intervalo de confiança é definido como sendo o intervalo entre `r sig$conf.i
 Com isso deduzimos que a variância do novo software é menor que a da versão anterior.
 
 ### Conclusões e recomendações
-Uma vez que, tanto nas análises em relação à média quanto em relação à variância, a hipótese nula foi rejeitada. Com isso podemos observar que não há evidências para afirmar que houve aumento do tempo médio de simulação e não houve aumento da variância dos tempos de execução do software, com isso recomenda-se que a nova versão do software de simulação seja utilizado.
+Uma vez que, tanto nas análises em relação à média quanto em relação à variância, a hipótese nula foi rejeitada. Com isso podemos observar que não há evidências para afirmar que houve aumento do tempo médio de simulação e não houve aumento da variância dos tempos de execução do _software_, com isso recomenda-se que a nova versão do software de simulação seja utilizado.
 Uma possível maneira de melhorar os testes realizados seria a disponibilidade de um maior tamanho amostral representativo do problema.
 
 ## Referências
